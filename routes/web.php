@@ -22,7 +22,7 @@ Route::get('/addCategory', function () {
 });
 
 Route::get('/addProduct', function () {
-    return view('addProduct');
+    return view('addProduct',['categoryID'=>App\Models\Category::all()]);
 });
 Route::post('/addCategory/store',[App\Http\Controllers\CategoryController::class,'add'])->name('addCategory');
 
@@ -31,6 +31,15 @@ Route::post('/addProduct/store',[App\Http\Controllers\ProductController::class,'
 Route::get('/showCategory',[App\Http\Controllers\CategoryController::class,'view'])->name('showCategory');
 
 Route::get('/showProduct',[App\Http\Controllers\ProductController::class,'view'])->name('showProduct');
+
+Route::get('/deleteProduct/{id}',[App\Http\Controllers\ProductController::class,'delete'])->name('deleteProduct');
+
+Route::get('editProduct/{id}',[App\Http\Controllers\ProductController::class,'edit'])->name('editProduct');
+//http://localhost/editProduct.php?id=22 localhost/editProduct/22
+
+Route::post('/updateProduct' ,[App\Http\Controllers\ProductController::class,'update'])->name('updateProduct');
+
+
 
 Auth::routes();
 

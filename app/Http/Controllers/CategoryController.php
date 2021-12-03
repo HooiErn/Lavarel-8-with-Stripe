@@ -14,6 +14,7 @@ class CategoryController extends Controller
         $addCategory=Category::create([
             'name'=>$r->categoryName,
         ]);
+        Session::flash('success',"Category create successfully!");
         Return view('addCategory');
     }
     public function view(){
