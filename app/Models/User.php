@@ -22,6 +22,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function myCart(){
+        return $this->hasMany('App\myCart');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
