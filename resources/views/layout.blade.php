@@ -53,6 +53,7 @@
     </button>
   </div>
 </nav>
+
 @yield('content')
 
  <!-- footer -->

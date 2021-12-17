@@ -1,9 +1,9 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Bootstrap Example</title>
+<title>Laravel</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,31 +13,29 @@
   </script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-            <a class="nav-link" href="{{url('/home')}}"><img src="{{ asset('images/promotion_03.png')}}"  alt="" class="img-fluid" width=100%  > </a>
-            </div>                    
-        </div>
-                
 
-        <div class="row" style="margin-top:20px;">
-            <div class="col-sm-4" style="text-align: center;">
-                <img src="{{ asset('images/samsungPhone.jpg')}}" width=50% alt="" class="img-fluid" > 
-                <p>SAMSUNG</p>
-            </div>
-             <div class="col-sm-4" style="text-align: center">
-                <img src="{{ asset('images/xiaomiPhone.png')}}" width=50% alt="" class="img-fluid"> 
-                <p>XIAOMI</p>           
-            </div>
-            <div class="col-sm-4" style="text-align: center" >
-                <img src="{{ asset('images/vivoPhone.jpg')}}" width=50% alt="" class="img-fluid" > 
-                <p>VIVO</p>
-            </div>                
-        </div>
-            
-    </div>
-
+ <div class="row" style="margin:20px;"> 
+         @foreach($products as $product)  
+            <div class="col-sm-3" style="background-color:white;margin:10px;
+            padding:10px;">       
+                    <tr>
+                        <td>{{$product->name}}</td><br>
+                        <td><img src="{{ asset('images/')}}/{{$product->image}}"
+                         width="200" class="img-fluid" alt=""></td><br>                     
+                        <td>{{$product->description}}</td>
+                        <td>{{$product->price}}</td>
+                        <td>{{$product->quantity}}</td>
+                        <td>{{$product->catName}}</td>
+                        <br>
+                        <div class="button" style="float: right;">
+                        <td><a href="{{ route('product.detail',['id'=>$product->id])}}" class="btn btn-danger btn-xs btn-l">Add To Cart</a>
+                        </td>
+                    </div>
+                    </tr>
+            </div> 
+            @endforeach            
+        </div> 
+    <br><br>
     <div class="container-fluid">
             <div class="copyright text-center">
               &copy; Copyright <strong>ABC company</strong>. All Rights Reserved
@@ -46,8 +44,12 @@
               Designed by <a href="https://ABC.com/">ABC Company</a>
             </div>
     </div>
-    <div class="col-sm-2"></div>
+
 </body>
 </html>
-
 @endsection
+
+
+                    
+
+                

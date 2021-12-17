@@ -36,6 +36,15 @@ class ProductController extends Controller
 
         Return view('showProduct')->with('products',$viewProduct);
     }
+    public function cview(){
+        //$viewProduct=Product::all();
+        $viewProduct=DB::table('products')
+        ->leftjoin('categories','categories.id','=','products.CategoryID')
+        ->select('products.*','categories.name as catName')
+        ->get();
+
+        Return view('viewProduct')->with('products',$viewProduct);
+    }
     public function delete($id){
         $deleteProduct=Product::find($id);
         $deleteProduct->delete();
