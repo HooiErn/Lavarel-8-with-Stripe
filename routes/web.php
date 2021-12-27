@@ -41,7 +41,7 @@ Route::post('/updateProduct' ,[App\Http\Controllers\ProductController::class,'up
 
 Route::get('/productDetail/{id}',[App\Http\Controllers\ProductController::class,'productdetail'])->name('product.detail');
 
-Route::get('/viewProduct',[App\Http\Controllers\ProductController::class,'cview'])->name('viewProduct');
+Route::get('/viewProduct',[App\Http\Controllers\ProductController::class,'viewProduct'])->name('viewProduct');
 
 Route::post('/addCart',[App\Http\Controllers\CartController::class,'add'])->name('add.to.cart');
 
