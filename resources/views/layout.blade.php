@@ -43,7 +43,7 @@
         </div>
       </li>      
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="" method="POST">
+    <form class="form-inline my-2 my-lg-0" action="{{route('search.product')}}" method="POST">
       @csrf
       <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -52,6 +52,7 @@
       My Cart <span class="badge bg-danger">1</span>
     </button>
   </div>
+  
 </nav>
 
 @yield('content')

@@ -41,9 +41,9 @@ class orderPaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('New order received from customer.')
+                    ->action('Check Now', url('https://stripe.com/en-my'))//button
+                    ->line('Please check the Stripe');//new line
     }
 
     /**

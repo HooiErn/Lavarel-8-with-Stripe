@@ -52,4 +52,11 @@ class PaymentController extends Controller
         Session::flash('success','Order successully!');
         return back();
     }
+    public function viewOrder(){
+        $viewOrder=DB::table('my_orders')
+        ->select('my_orders.*')
+        ->get();
+        
+        return view('myOrder')->with('orders',$viewOrder);
+    }
 }

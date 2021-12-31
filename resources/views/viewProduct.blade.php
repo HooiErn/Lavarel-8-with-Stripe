@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +24,6 @@
                          width="200" class="img-fluid" alt=""></td><br>                     
                         <td>{{$product->description}}</td>
                         <td>{{$product->price}}</td>
-                        <td>{{$product->quantity}}</td>
-                        <td>{{$product->catName}}</td>
                         <br>
                         <div class="button" style="float: right;">
                         <td><a href="{{ route('product.detail',['id'=>$product->id])}}" class="btn btn-danger btn-xs btn-l">Add To Cart</a>

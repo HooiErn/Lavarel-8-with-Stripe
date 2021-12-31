@@ -33,8 +33,9 @@ class CartController extends Controller
         ->select('my_carts.quantity as cartQTY','my_carts.id as cid', 'products.*')
         ->where('my_carts.orderID','=','')//if '' means haven't make payment
         ->where('my_carts.userID','=',Auth::id())//item match with current login user
-        ->get();
-        
+        //->get();
+        ->paginate(5);//5=five items in one page
+
         return view('myCart')->with('carts',$carts);
     }
 
@@ -44,5 +45,11 @@ class CartController extends Controller
         Session::flash('success','Item was remove successfully!');
         Return redirect()->route('show.my.cart');
     }
-    
+    public function viewOrder(){
+        $viewOrder=DB::table('my_orders')
+        ->select('my_orders.*')
+        ->get();
+        
+        return view('myOrder')->with('orders',$viewOrder);
+    }
 }
