@@ -16,6 +16,7 @@ class CartController extends Controller
         $this->middleware('auth');
     }
 
+
     public function add(){
         $r=request();
         $addCart=myCart::Create([
@@ -36,6 +37,8 @@ class CartController extends Controller
         //->get();
         ->paginate(5);//5=five items in one page
 
+       $this->cartItem();//call function calculate no.cart item
+
         return view('myCart')->with('carts',$carts);
     }
 
@@ -45,11 +48,21 @@ class CartController extends Controller
         Session::flash('success','Item was remove successfully!');
         Return redirect()->route('show.my.cart');
     }
-    public function viewOrder(){
-        $viewOrder=DB::table('my_orders')
-        ->select('my_orders.*')
-        ->get();
-        
-        return view('myOrder')->with('orders',$viewOrder);
+    public function cartItem(){
+        $cartItem=0;
+    $noItem=DB::table('my_carts')
+        ->leftjoin('products','products.id','=','my_carts.productID')
+        ->select(DB::raw('COUNT(*) as count_item'))
+        ->where('my_carts.orderID','=','')//if '' means haven't make payment
+        ->where('my_carts.userID','=',Auth::id())//item match with current login user
+        ->groupBy('my_carts.userID')
+        ->first();
+
+        if($noItem){
+           $cartItem=$noItem->count_item; 
+        }
+
+        Session()->put('cartItem',$cartItem);//assign value to session variable cartItem
     }
+    
 }

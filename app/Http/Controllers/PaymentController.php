@@ -53,10 +53,11 @@ class PaymentController extends Controller
         return back();
     }
     public function viewOrder(){
-        $viewOrder=DB::table('my_orders')
-        ->select('my_orders.*')
+        $orders=DB::table('my_orders')
+        ->select('my_orders.id','my_orders.amount','my_orders.created_at')
+        ->where('my_orders.userID','=',Auth::id())
         ->get();
-        
-        return view('myOrder')->with('orders',$viewOrder);
+
+        return view('myOrder')->with('orders',$orders);
     }
 }

@@ -8,7 +8,13 @@ use App\Models\Category;//import category model
 
 class CategoryController extends Controller
 {
-
+    public function __contruct(){
+        $this->middleware('auth');
+    }
+    
+    public function index(){
+        return view ('addCategory');
+    }
     public function add(){
         $r=request();//received the data by GET or POST method $_POST['name']
         $addCategory=Category::create([
