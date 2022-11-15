@@ -8,7 +8,7 @@
         var len=cboxes.length;//get number of cid[] & checkbox inside the page
         for(var i =0;i<len;i++){
             if(cboxes[i].checked){ //calculate if checked
-                subtotal=parseFloat(names[i].value)+parseFloat(subtotal);
+                subtotal=parseFloat(names[i].value)+parseFloat(subtotal);//parsefloat- convert the value
                 
             }
         }

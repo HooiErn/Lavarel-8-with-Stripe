@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/addCategory', [App\Http\Controllers\CategoryController::class,'index'])->name('add.Category');
 
 
